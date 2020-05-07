@@ -36,5 +36,3 @@ remove.addEventListener('click', function (e) {
 	e.preventDefault();
 	results.innerHTML = '';
 });
-
-f
