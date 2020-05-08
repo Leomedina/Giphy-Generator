@@ -1,13 +1,17 @@
-// console.log("Let's get this party started!");
 const form = document.querySelector('form');
 const searchBar = document.querySelector('#searchVal');
 const results = document.querySelector('.results');
 const remove = document.querySelector('.remove');
 
 async function getGif(search) {
-	const key = '8QooyYX4xC5q9J2g4BuH0NwZbUlteh4l';
-	const response = await axios.get(`https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${search}&rating=G`);
-	renderGif(response.data.data.image_original_url);
+	try {
+		const key = '8QooyYX4xC5q9J2g4BuH0NwZbUlteh4l';
+		const url = `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${search}&rating=G`;
+		const response = await axios.get(url);
+		renderGif(response.data.data.image_original_url);
+	} catch (e) {
+		console.log(e);
+	}
 }
 
 function renderGif(gif) {
@@ -16,19 +20,15 @@ function renderGif(gif) {
 	results.appendChild(newImg);
 }
 
-function promptError() {
-    searchBar.classList.add("error");
-}
-
 form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const searchVal = searchBar.value;
+	e.preventDefault();
+	const searchVal = searchBar.value;
 	if (searchVal) {
-        getGif(searchVal);
-        searchBar.classList.remove("error");
+		getGif(searchVal);
+		searchBar.classList.remove('error');
 	} else {
-        promptError();
-    }
+		searchBar.classList.add('error');
+	}
 	form.reset();
 });
 
