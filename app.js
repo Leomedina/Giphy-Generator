@@ -9,12 +9,13 @@ async function getGif(search) {
 		const url = `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${search}&rating=G`;
 		const response = await axios.get(url);
 		if (!response.data.data.image_original_url) {
-			throw new Error('No image found');
+			throw new Error('Image Not Found');
 		}
 		renderGif(response.data.data.image_original_url);
 	} catch (e) {
 		console.log(e);
 	}
+	
 	//4 - defined error
 	//3 - syntax err: code does not run (compiled languages vs dynamic lang)
 	//2 - reference err: code will run until that point
