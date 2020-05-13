@@ -6,7 +6,7 @@ const remove = document.querySelector('.remove');
 async function getGif(search) {
 	try {
 		const key = '8QooyYX4xC5q9J2g4BuH0NwZbUlteh4l';
-		const url = 'https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${search}&rating=G`;
+		const url = `'https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${search}&rating=G`;
 		const response = await axios.get(url);
 		if (!response.data.data.image_original_url) {
 			throw new Error('Image Not Found');
